@@ -47,7 +47,7 @@ const App = () => {
   //Edit user data on click
   const handleEdit = (id) => {
     const user = users.find((user) => user.id === id);
-    console.log(user);
+
     usetName(user.name);
     usetEmail(user.email);
     usetRole(user.role);
@@ -73,15 +73,15 @@ const App = () => {
     const pageStart = (page - 1) * itemPerPage;
     const pageEnd = pageStart + itemPerPage;
     const pageRows = users.slice(pageStart, pageEnd);
-    console.log(pageRows, "no of rows in one page");
+
     const pageRowIds = pageRows.map((row) => row.id);
-    console.log(pageRowIds, "no of id's in one page");
+
     const updatedPageRows = pageRows.map((row) => {
       return { ...row, isChecked };
     });
     const updatedUsers = [...users];
     updatedUsers.splice(pageStart, itemPerPage, ...updatedPageRows);
-    console.log(updatedUsers);
+
     setUsers(updatedUsers);
   }
   // -----------single checkbox---------------------
@@ -90,7 +90,7 @@ const App = () => {
     const newdata = users.map((user) => {
       return user.id === name ? { ...user, isChecked: checked } : user;
     });
-    console.log(newdata);
+
     setUsers(newdata);
   }
   // -----------handleAllDelete----------------------
@@ -116,7 +116,6 @@ const App = () => {
   // -------------edit a table data---------------------
   const handleUpdate = (id) => {
     const userIndex = users.findIndex((user) => user.id === editId);
-    console.log(userIndex);
     const updatedUsers = [...users];
     updatedUsers[userIndex] = {
       ...updatedUsers[userIndex],
@@ -153,7 +152,6 @@ const App = () => {
                 checked={ismainChecked}
                 onClick={(e) => {
                   setIsMainChecked(e.target.checked);
-                  console.log(e.target.checked, "e.target.checked");
                 }}
                 onChange={handleSelectAll}
               />{" "}
@@ -187,7 +185,6 @@ const App = () => {
                       checked={user.isChecked}
                       onClick={(e) => {
                         setSinglecheck(e.target.checked);
-                        console.log(e.target.checked, "e.target.checked");
                       }}
                       onChange={handlecheck}
                     />
@@ -197,7 +194,6 @@ const App = () => {
                       type="text"
                       value={user.name}
                       onChange={(e) => {
-                        console.log(e.target.value);
                         usetName(e.target.value);
                       }}
                     />
@@ -207,7 +203,6 @@ const App = () => {
                       type="text"
                       value={user.email}
                       onChange={(e) => {
-                        console.log(e.target.value);
                         usetEmail(e.target.value);
                       }}
                     />
@@ -217,7 +212,6 @@ const App = () => {
                       type="text"
                       value={user.role}
                       onChange={(e) => {
-                        console.log(e.target.value);
                         usetRole(e.target.value);
                       }}
                     />
@@ -235,7 +229,6 @@ const App = () => {
                       checked={user.isChecked}
                       onClick={(e) => {
                         setSinglecheck(e.target.checked);
-                        console.log(e.target.checked, "e.target.checked");
                       }}
                       onChange={handlecheck}
                     />

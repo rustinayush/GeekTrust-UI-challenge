@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./UserData.css";
 import axios from "axios";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
-
 const UserData = ({ api }) => {
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState("");
@@ -16,7 +15,6 @@ const UserData = ({ api }) => {
   const [emailError, setEmailError] = useState("");
   const [roleError, setRoleError] = useState("");
   const itemPerPage = 10;
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -29,10 +27,8 @@ const UserData = ({ api }) => {
         console.log("error", err);
       }
     };
-
     fetchData();
   }, [api]);
-
   useEffect(() => {
     if (editId !== -1) {
       const userIndex = users.findIndex((user) => user.id === editId);
@@ -46,7 +42,6 @@ const UserData = ({ api }) => {
       setUsers(newUsers);
     }
   }, [uname, uemail, urole, editId, users]);
-
   const handleEdit = (id) => {
     const user = users.find((user) => user.id === id);
     setUserName(user.name);
@@ -54,7 +49,6 @@ const UserData = ({ api }) => {
     setUserRole(user.role);
     setEditID(id);
   };
-
   const selectPageHandle = (selectedPage) => {
     if (
       selectedPage >= 1 &&
@@ -65,7 +59,6 @@ const UserData = ({ api }) => {
       setIsMainChecked(false);
     }
   };
-
   const handleSelectAll = (event) => {
     const isChecked = event.target.checked;
     const pageStart = (page - 1) * itemPerPage;
@@ -79,7 +72,6 @@ const UserData = ({ api }) => {
     updatedUsers.splice(pageStart, itemPerPage, ...updatedPageRows);
     setUsers(updatedUsers);
   };
-
   const handleCheck = (event) => {
     const { name, checked } = event.target;
     const updatedUsers = users.map((user) =>
@@ -87,7 +79,6 @@ const UserData = ({ api }) => {
     );
     setUsers(updatedUsers);
   };
-
   const handleAllDelete = () => {
     const pageStart = (page - 1) * itemPerPage;
     const pageEnd = pageStart + itemPerPage;
@@ -101,10 +92,8 @@ const UserData = ({ api }) => {
     setUsers(updatedUsers);
     setIsMainChecked(false);
   };
-
   const handleUpdate = () => {
     let isValid = true;
-
     // Validate name
     if (uname.trim() === "") {
       setNameError("Name cannot be empty");
@@ -112,7 +101,6 @@ const UserData = ({ api }) => {
     } else {
       setNameError("");
     }
-
     // Validate email
     if (uemail.trim() === "") {
       setEmailError("Email cannot be empty");
@@ -120,7 +108,6 @@ const UserData = ({ api }) => {
     } else {
       setEmailError("");
     }
-
     // Validate role
     if (urole.trim() === "") {
       setRoleError("Role cannot be empty");
@@ -141,12 +128,10 @@ const UserData = ({ api }) => {
       setEditID(-1);
     }
   };
-
   const deleteUser = (selectedUserId) => {
     const updatedUsers = users.filter((user) => user.id !== selectedUserId);
     setUsers(updatedUsers);
   };
-
   return (
     <div className="container">
       <br />
@@ -315,5 +300,4 @@ const UserData = ({ api }) => {
     </div>
   );
 };
-
 export default UserData;

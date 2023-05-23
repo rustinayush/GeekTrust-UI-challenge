@@ -171,6 +171,7 @@ const UserData = ({ api }) => {
               ) {
                 return user;
               }
+              return null;
             })
             .slice(page * 10 - 10, page * 10)
             .map((user) =>

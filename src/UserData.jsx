@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./UserData.css";
 import axios from "axios";
-import { Pagination } from "antd";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 
 const UserData = ({ api }) => {

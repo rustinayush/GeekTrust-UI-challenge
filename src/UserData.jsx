@@ -12,7 +12,9 @@ const UserData = ({ api }) => {
   const [urole, setUserRole] = useState("");
   const [page, setPage] = useState(1);
   const [ismainChecked, setIsMainChecked] = useState(false);
-
+  const [nameError, setNameError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [roleError, setRoleError] = useState("");
   const itemPerPage = 10;
 
   useEffect(() => {
@@ -101,16 +103,43 @@ const UserData = ({ api }) => {
   };
 
   const handleUpdate = () => {
-    const userIndex = users.findIndex((user) => user.id === editId);
-    const updatedUsers = [...users];
-    updatedUsers[userIndex] = {
-      ...updatedUsers[userIndex],
-      name: uname,
-      email: uemail,
-      role: urole,
-    };
-    setUsers(updatedUsers);
-    setEditID(-1);
+    let isValid = true;
+
+    // Validate name
+    if (uname.trim() === "") {
+      setNameError("Name cannot be empty");
+      isValid = false;
+    } else {
+      setNameError("");
+    }
+
+    // Validate email
+    if (uemail.trim() === "") {
+      setEmailError("Email cannot be empty");
+      isValid = false;
+    } else {
+      setEmailError("");
+    }
+
+    // Validate role
+    if (urole.trim() === "") {
+      setRoleError("Role cannot be empty");
+      isValid = false;
+    } else {
+      setRoleError("");
+    }
+    if (isValid) {
+      const userIndex = users.findIndex((user) => user.id === editId);
+      const updatedUsers = [...users];
+      updatedUsers[userIndex] = {
+        ...updatedUsers[userIndex],
+        name: uname,
+        email: uemail,
+        role: urole,
+      };
+      setUsers(updatedUsers);
+      setEditID(-1);
+    }
   };
 
   const deleteUser = (selectedUserId) => {
@@ -167,33 +196,48 @@ const UserData = ({ api }) => {
                 </td>
                 <td>
                   {user.id === editId ? (
-                    <input
-                      type="text"
-                      value={uname}
-                      onChange={(e) => setUserName(e.target.value)}
-                    />
+                    <>
+                      <input
+                        type="text"
+                        value={uname}
+                        onChange={(e) => setUserName(e.target.value)}
+                      />
+                      {nameError && (
+                        <span className="error-message">{nameError}</span>
+                      )}
+                    </>
                   ) : (
                     user.name
                   )}
                 </td>
                 <td>
                   {user.id === editId ? (
-                    <input
-                      type="text"
-                      value={uemail}
-                      onChange={(e) => setUserEmail(e.target.value)}
-                    />
+                    <>
+                      <input
+                        type="text"
+                        value={uemail}
+                        onChange={(e) => setUserEmail(e.target.value)}
+                      />
+                      {emailError && (
+                        <span className="error-message">{emailError}</span>
+                      )}
+                    </>
                   ) : (
                     user.email
                   )}
                 </td>
                 <td>
                   {user.id === editId ? (
-                    <input
-                      type="text"
-                      value={urole}
-                      onChange={(e) => setUserRole(e.target.value)}
-                    />
+                    <>
+                      <input
+                        type="text"
+                        value={urole}
+                        onChange={(e) => setUserRole(e.target.value)}
+                      />
+                      {roleError && (
+                        <span className="error-message">{roleError}</span>
+                      )}
+                    </>
                   ) : (
                     user.role
                   )}

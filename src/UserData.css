@@ -64,17 +64,16 @@
   -webkit-text-decoration-skip: objects;
 }
 .footer {
-  display: flex;
+  display: inline-flex;
 }
 .deleteall {
-  background-color: red;
-  padding-top: 10px;
-  padding-right: 10px;
+  background-color: orangered;
+  margin-top: 10px;
   cursor: pointer;
 }
 .pagination {
   padding: 10px;
-  margin: 10px 0;
+  margin: 10px 40px;
   width: 90%;
   display: flex;
   justify-content: center;
@@ -89,4 +88,8 @@
 }
 .pagination-disable {
   opacity: 0;
+}
+.error-message {
+  color: red;
+  font-size: 12px;
 }

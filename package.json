@@ -1,6 +1,5 @@
 {
   "name": "admin-ui",
-  "homepage": "https://rustinayush.github.io/Geektrust_Admin-UI",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

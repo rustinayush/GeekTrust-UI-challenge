@@ -14,6 +14,7 @@ const UserData = ({ api }) => {
   const [nameError, setNameError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [roleError, setRoleError] = useState("");
+  const [selectedRows, setSelectedRows] = useState([]);
   const itemPerPage = 10;
   useEffect(() => {
     const fetchData = async () => {
@@ -71,6 +72,12 @@ const UserData = ({ api }) => {
     const updatedUsers = [...users];
     updatedUsers.splice(pageStart, itemPerPage, ...updatedPageRows);
     setUsers(updatedUsers);
+    setIsMainChecked(isChecked);
+    if (isChecked) {
+      setSelectedRows(pageRows.map((row) => row.id));
+    } else {
+      setSelectedRows([]);
+    }
   };
   const handleCheck = (event) => {
     const { name, checked } = event.target;
@@ -78,7 +85,17 @@ const UserData = ({ api }) => {
       user.id === name ? { ...user, isChecked: checked } : user
     );
     setUsers(updatedUsers);
+    if (checked) {
+      setSelectedRows((prevSelectedRows) => [...prevSelectedRows, name]);
+    } else {
+      setSelectedRows((prevSelectedRows) =>
+        prevSelectedRows.filter((rowId) => rowId !== name)
+      );
+    }
   };
+  // Apply grayish background color to selected rows
+  const isRowSelected = (id) => selectedRows.includes(id);
+
   const handleAllDelete = () => {
     const pageStart = (page - 1) * itemPerPage;
     const pageEnd = pageStart + itemPerPage;
@@ -128,8 +145,8 @@ const UserData = ({ api }) => {
       setEditID(-1);
     }
   };
-  const deleteUser = (selectedUserId) => {
-    const updatedUsers = users.filter((user) => user.id !== selectedUserId);
+  const deleteUser = (Id) => {
+    const updatedUsers = users.filter((user) => user.id !== Id);
     setUsers(updatedUsers);
   };
   return (
@@ -170,12 +187,12 @@ const UserData = ({ api }) => {
             )
             .slice(page * itemPerPage - itemPerPage, page * itemPerPage)
             .map((user) => (
-              <tr key={user.id}>
+              <tr key={user.id} className={isRowSelected(user.id) ? "selected" : ""}>
                 <td>
                   <input
                     type="checkbox"
                     name={user.id}
-                    checked={user.isChecked}
+                    checked={user.isChecked || false}
                     onChange={handleCheck}
                   />
                 </td>

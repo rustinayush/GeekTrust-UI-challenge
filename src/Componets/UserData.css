@@ -1,0 +1,121 @@
+.container {
+  margin: 20px;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 50px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.table tr.selected td {
+  background-color: #ccc !important;
+}
+
+.table th,
+.table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.table th {
+  background-color: #f2f2f2;
+}
+
+.table td.btn {
+  display: flex;
+  justify-content: center;
+}
+
+.btn button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.btn button:focus {
+  outline: none;
+}
+
+.deleteall {
+  border: none;
+  background-color: #f44336;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.error-message {
+  color: red;
+}
+.deleteall {
+  background-color: orangered;
+  margin-top: 30px;
+  margin-left: 10px;
+  cursor: pointer;
+  border-radius: 15px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.pagination span {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.pagination-disable {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.pagination__selected {
+  background-color: #f2f2f2;
+}
+
+/* Responsive Styles */
+
+@media screen and (max-width: 768px) {
+  .container {
+    margin: 10px;
+  }
+
+  .table th,
+  .table td {
+    padding: 5px;
+  }
+
+  .btn button {
+    margin-right: 2px;
+  }
+
+  .deleteall {
+    padding: 8px 12px;
+  }
+
+  .pagination span {
+    padding: 3px 6px;
+  }
+}
+.selected {
+  text-transform: none !important;
+  text-align: left !important;
+  border: #333 !important;
+  margin: 50px !important;
+  background-color: rgb(255, 77, 0) !important;
+  font-size: 14px !important;
+  color: whitesmoke !important;
+  border-radius: 50px !important;
+}

@@ -27,9 +27,12 @@ const UserTable = ({
       <thead>
         <tr>
           <th>
-            <input type="checkbox" checked={ismainChecked} 
-            // onClick={(e) => setIsMainChecked(e.target.checked)}
-                onChange={handleSelectAll}/>
+            <input
+              type="checkbox"
+              checked={ismainChecked}
+              // onClick={(e) => setIsMainChecked(e.target.checked)}
+              onChange={handleSelectAll}
+            />
           </th>
           <th>Name</th>
           <th>Email</th>
@@ -39,33 +42,33 @@ const UserTable = ({
       </thead>
       <tbody>
         {users
-        .filter((user) =>
-        search
-          ? user.name.toLowerCase().includes(search.toLowerCase()) ||
-            user.email.toLowerCase().includes(search.toLowerCase()) ||
-            user.role.toLowerCase().includes(search.toLowerCase())
-          : true
-      )
-      .slice(page * itemPerPage - itemPerPage, page * itemPerPage)
-        .map((user) => (
-          <UserRow
-            key={user.id}
-            isRowSelected={isRowSelected}
-            ismainChecked={ismainChecked}
-            user={user}
-            editId={editId}
-            uname={uname}
-            uemail={uemail}
-            urole={urole}
-            handleEdit={handleEdit}
-            handleCheck={handleCheck}
-            deleteUser={deleteUser}
-            handleUpdate={handleUpdate}
-            nameError={nameError}
-            emailError={emailError}
-            roleError={roleError}
-          />
-        ))}
+          .filter((user) =>
+            search
+              ? user.name.toLowerCase().includes(search.toLowerCase()) ||
+                user.email.toLowerCase().includes(search.toLowerCase()) ||
+                user.role.toLowerCase().includes(search.toLowerCase())
+              : true
+          )
+          .slice(page * itemPerPage - itemPerPage, page * itemPerPage)
+          .map((user) => (
+            <UserRow
+              key={user.id}
+              isRowSelected={isRowSelected}
+              ismainChecked={ismainChecked}
+              user={user}
+              editId={editId}
+              uname={uname}
+              uemail={uemail}
+              urole={urole}
+              handleEdit={handleEdit}
+              handleCheck={handleCheck}
+              deleteUser={deleteUser}
+              handleUpdate={handleUpdate}
+              nameError={nameError}
+              emailError={emailError}
+              roleError={roleError}
+            />
+          ))}
       </tbody>
     </table>
   );

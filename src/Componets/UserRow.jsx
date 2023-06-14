@@ -1,11 +1,24 @@
 import React from "react";
-import "./UserData.css"
+import "./UserData.css";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 
-const UserRow = ({isRowSelected,  user, editId, uname, uemail, urole, handleEdit, handleCheck, deleteUser, handleUpdate, nameError, emailError, roleError }) => {
+const UserRow = ({
+  isRowSelected,
+  user,
+  editId,
+  uname,
+  uemail,
+  urole,
+  handleEdit,
+  handleCheck,
+  deleteUser,
+  handleUpdate,
+  nameError,
+  emailError,
+  roleError,
+}) => {
   return (
-    <tr key={user.id}
-    className={isRowSelected(user.id) ? "selected" : ""}>
+    <tr key={user.id} className={isRowSelected(user.id) ? "selected" : ""}>
       <td>
         <input
           type="checkbox"
@@ -64,7 +77,10 @@ const UserRow = ({isRowSelected,  user, editId, uname, uemail, urole, handleEdit
             <button onClick={() => handleEdit(user.id)}>
               <AiFillEdit />
             </button>
-            <button onClick={() => deleteUser(user.id)}>
+            <button
+              className="deletesingle"
+              onClick={() => deleteUser(user.id)}
+            >
               <AiFillDelete />
             </button>
           </>

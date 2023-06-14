@@ -4,12 +4,13 @@
 
 input[type="text"] {
   width: 100%;
-  padding: 5px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  margin-top: 50px;
 }
-
+.searching {
+  margin-top: 50px;
+  padding: 5px;
+}
 .table {
   width: 100%;
   border-collapse: collapse;
@@ -30,7 +31,6 @@ input[type="text"] {
 }
 
 .table td.btn {
-  display: flex;
   justify-content: center;
 }
 
@@ -39,10 +39,12 @@ input[type="text"] {
   background-color: transparent;
   cursor: pointer;
   margin-right: 5px;
+  color: rgb(25, 118, 210);
 }
 
 .btn button:focus {
   outline: none;
+  color: rgb(25, 118, 210);
 }
 
 .deleteall {
@@ -92,6 +94,12 @@ input[type="text"] {
     margin: 10px;
   }
 
+  .searching {
+    margin-top: 50px;
+    padding: 5px;
+    width: 100%;
+  }
+
   .table th,
   .table td {
     padding: 5px;
@@ -99,6 +107,7 @@ input[type="text"] {
 
   .btn button {
     margin-right: 2px;
+    color: rgb(25, 118, 210);
   }
 
   .deleteall {

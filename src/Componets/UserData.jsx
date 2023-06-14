@@ -21,21 +21,21 @@ const UserData = ({ api }) => {
   const [selectedRows, setSelectedRows] = useState([]);
   const itemPerPage = 10;
 
-  const fetchData = async () => {
-    try {
-      const res = await axios.get(api);
-      const data = res.data;
-      if (data.length > 0) {
-        setUsers(data);
-      }
-    } catch (err) {
-      console.log("error", err);
-    }
-  };
-
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(api);
+        const data = res.data;
+        if (data.length > 0) {
+          setUsers(data);
+        }
+      } catch (err) {
+        console.log("error", err);
+      }
+    };
+
     fetchData();
-  }, []);
+  }, [api]);
 
   useEffect(() => {
     if (editId !== -1) {
